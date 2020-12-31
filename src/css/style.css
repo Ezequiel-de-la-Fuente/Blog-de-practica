@@ -1,0 +1,289 @@
+/* https://flatuicolors.com/palette/defo */
+:root{
+    --libreBaskerville: 'Libre Baskerville', serif;
+    --sourceSansPro: 'Source Sans Pro', sans-serif;
+    --sunFlower:#f1c40f;
+    --carrot: #e67e22;
+    --alizarin:#e74c3c;
+    --black:#2d3436;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header{
+    position: sticky;
+    top: 0px;
+    background: #fff;
+}
+
+.menu{
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-title{
+    width: 60%;
+}
+.menu-title a{
+    border-bottom: 5px #fff dashed;
+    transition: border 400ms ease;
+}
+
+.menu-title a:hover{
+    border-bottom: 2px #333 solid;
+}
+
+.menu-title{
+    font-family: var(--libreBaskerville);
+    text-decoration: none;
+    color: var(--black);
+    font-size: 45px;
+    font-weight: 600;
+    display: inline;
+    width: 60%;
+    margin-left: 10px;
+    
+}
+
+.menu-item a{
+    text-decoration: none;
+    margin-right: 50px;
+    color: var(--alizarin);
+    font-weight: bold;
+    font-family: var(--libreBaskerville);
+    transition: color ease 300ms;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.menu-item a:hover{
+    color: var(--sunFlower);
+}
+
+.menu-item a svg{
+    margin-bottom: 3px;
+}
+
+#presentation-one{
+    background: url('../img/write.jpg') no-repeat;
+    background-size:cover;
+    height: 600px;
+}
+
+.presentation-title{
+    text-align: center;
+    font-size: 70px;
+    color: #000;
+    font-family: var(--libreBaskerville);
+    text-transform: uppercase;
+}
+
+.presentation-title:first-child{
+    padding-top: 125px;
+    color: #fff;
+}
+
+
+
+.presentation-subtitle{
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    font-family: var(--sourceSansPro);
+    font-weight: bold;
+    word-wrap: break-word;
+    margin: 0 20%;
+    margin-top: 25px;
+}
+
+.presentation-subtitle span{
+    color: var(--black);
+}
+
+.presentation-buttons{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn{
+    color: #fff;
+    font-family: var(--sourceSansPro);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    transition: background ease 300ms;
+    margin:0 50px;
+}
+
+
+
+.btn-orange{
+    background: var(--carrot);
+}
+
+.btn-orange:hover{
+    background: #c0610d;
+}
+
+.btn-red{
+    background: var(--alizarin);
+}
+
+.btn-red:hover{
+    background: #bf3829;
+}
+
+.btn-move-down{
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 15px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    background: #333;
+    /* opacity: 0.7; */
+    padding: 10px 15px;
+    transition: background 300ms ease;
+}
+
+.btn-move-down:hover{
+    background: #111;
+}
+
+@keyframes move {
+    from {
+        top: -2px;
+    }
+  
+    to {
+        top: 2px;
+    }
+}
+
+.btn-move-down svg{
+    position: relative;
+    animation: 500ms infinite alternate move;
+    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+}
+
+
+
+.sub-menu-div,
+.menu-button,
+.menu__responsive{
+    display: none;
+}
+
+.menu-button{
+    outline: none;
+    border: none;
+    font-size: 30px;
+    background: none;
+    color: var(--carrot);
+    margin-left: auto;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.menu__responsive{
+    position: absolute;
+    background: #fff;
+    height: 100vh;
+    width: 30vw;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+
+.menu__responsive div{
+    height: 100%;
+}
+
+.menu__responsive-cross{
+ margin-right: 40%;
+ margin-left: 5%;
+ margin-top: 5px;
+ font-size: 25px;
+ font-weight: lighter;
+ cursor: pointer;
+ color: var(--carrot);
+}
+
+.menu-item__responsive{
+    color: var(--carrot);
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 40px 0;
+    width: 100%;
+    transition: background ease 300ms;
+    cursor: pointer;
+}
+
+.menu-item__responsive:hover{   
+    background: #ccc;
+}
+
+.menu-item__responsive a{
+    color: var(--carrot);
+    text-decoration: none;
+    width: 95%;
+    height: 100%;
+    padding: 20px 0;
+    padding-left: 5%;
+    display: inline-block;
+}
+
+
+
+.display-none{
+    display: none;
+}
+
+@media screen and (max-width:1250px){
+    .menu-item{
+        display: none;
+    }
+
+    .menu__responsive,
+    .menu-button{
+        display: block;
+    }
+
+    #presentation-one{
+        height: 900px;
+        background-image: url('../img/write-mobile.jpg');
+    }
+
+
+    .presentation-subtitle{
+        margin: 0 5%;
+    }
+
+    .presentation-buttons{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn{
+        margin-top: 10px;
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+}
+
+@media screen and (max-width:700px){
+    .menu__responsive{
+        width: 40%;
+    }
+    .btn{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
