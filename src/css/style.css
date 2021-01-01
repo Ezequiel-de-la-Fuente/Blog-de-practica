@@ -17,6 +17,7 @@
     list-style: none;
 }
 
+/* HEADER */
 header {
     position: sticky;
     top: 0px;
@@ -30,9 +31,6 @@ header {
     transition: height 300ms ease;
 }
 
-.menu__short{
-    height: 70px;
-}
 
 .menu-title {
     width: 60%;
@@ -77,6 +75,8 @@ header {
     margin-bottom: 3px;
 }
 
+/* PRESENTATION */
+
 #presentation-one {
     background: url("../img/write.jpg") no-repeat;
     background-size: cover;
@@ -88,7 +88,7 @@ header {
     font-family: var(--libreBaskerville);
     font-size: 70px;
     text-align: center;
-    color: #000;
+    color: var(--alizarin);
 }
 
 .presentation-title:first-child {
@@ -108,12 +108,12 @@ header {
 }
 
 .presentation-subtitle span {
-    color: var(--black);
+    color: var(--alizarin);
 }
 
 .presentation-buttons {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .btn {
@@ -128,6 +128,8 @@ header {
     margin-right: 35px;
     border-radius: 20px;
 }
+
+
 
 .btn:nth-child(2) {
     margin-left: 100px;
@@ -151,7 +153,7 @@ header {
 
 .btn-move-down {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 60px;
     margin-right: 15px;
     text-align: center;
     color: #fff;
@@ -162,6 +164,11 @@ header {
     padding: 10px 15px;
     border-radius: 20px;
     transition: background 300ms ease;
+    cursor: pointer;
+}
+
+.btn:active{
+    background: #2be95b;
 }
 
 .btn-move-down:hover {
@@ -184,11 +191,8 @@ header {
     animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
 }
 
-.sub-menu-div,
-.menu-button,
-.menu__responsive {
-    display: none;
-}
+/* MENU RESPONSIVE */
+
 
 .menu-button {
     outline: none;
@@ -208,6 +212,11 @@ header {
     width: 30vw;
     z-index: 100;
     top: 0;
+    left: -500px;
+    transition: all 400ms ease;
+}
+
+.menu__responsive-show{
     left: 0;
 }
 
@@ -229,7 +238,7 @@ header {
     color: var(--carrot);
     text-decoration: none;
     text-transform: uppercase;
-    margin: 40px 0;
+    margin: 10px 0;
     width: 100%;
     transition: background ease 300ms;
     cursor: pointer;
@@ -249,6 +258,7 @@ header {
     display: inline-block;
 }
 
+/* PRESENTATION SECONDARY */
 .presentation__secondary {
     background: url("../img/write-secondary.jpg") no-repeat;
     background-size: cover;
@@ -267,9 +277,7 @@ header {
     color: #fff;
 }
 
-.display-none {
-    display: none;
-}
+
 
 /* MAIN */
 
@@ -416,8 +424,8 @@ header {
     text-transform: uppercase;
     font-family: var(--libreBaskerville);
     color: #000;
-    margin-top: 120px;
-    margin-bottom: 5px;
+    margin-top: 100px;
+    margin-bottom: 20px;
 }
 
 .share-section-button-container {
@@ -440,6 +448,10 @@ header {
 .btn-share:hover {
     color: #fff;
     background: var(--alizarin);
+}
+
+.btn-mobile{
+    display: none;
 }
 
 /* FOOTER */
@@ -467,7 +479,21 @@ header {
     text-decoration: underline;
 }
 
+/* Fijos */
+.display-none{
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
 @media screen and (max-width: 1250px) {
+
+    .menu__responsive{
+        display: block;
+    }
+
     .menu-item {
         display: none;
     }
@@ -478,12 +504,14 @@ header {
 
     #presentation-one {
         height: 900px;
-        background-image: url("../img/write-mobile.jpg");
+        background-position: -250px;
+        /* background-image: url("../img/write-mobile.jpg"); */
     }
 
     .presentation__secondary {
         height: 700px;
-        background-image: url("../img/write-secondary-mobile.jpg");
+        background-position: -250px;
+        /* background-image: url("../img/write-secondary-mobile.jpg"); */
     }
 
     .presentation-subtitle {
@@ -553,4 +581,16 @@ header {
         margin-right: 20%;
         margin-left: 20%;
     }
+
+    #suscribe-form input[type="submit"]{
+        display: none;
+    }
+
+    .btn-mobile{
+        display: block;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
 }
+
