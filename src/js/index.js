@@ -6,6 +6,26 @@ window.addEventListener('load', function(){
         startMoveDownAnimation();
         
     });
+
+    let articles=document.querySelector('#main-articles');
+    console.table(articles)
+    for(let i=1;i<=4;i++){
+        fetch(`https://jsonplaceholder.typicode.com/posts/${i}`)
+            .then(article=>article.json())
+            .then(article=>{
+                let innerHTML=`<article class="main-article">
+                <div class="main-article-img-container">
+                    <img src="https://picsum.photos/id/${article.id}/300/200" alt="img">
+                </div>
+
+                <h4 class="main-article-title">${article.title}</h4>
+                <p class="main-article-p">${article.body}</p>
+                <a href="./article.html?postId-${article.id}" class="btn btn-orange">Reed more...</a>
+                </article>`;
+
+                articles.innerHTML+=innerHTML;
+            })
+    }
 });
 
 /**

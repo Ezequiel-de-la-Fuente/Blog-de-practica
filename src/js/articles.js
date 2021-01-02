@@ -2,7 +2,9 @@
 
 window.addEventListener('load', function(){
     let id=parseInt(getParameterByName('page'));
-
+    if(isNaN(id)){
+        id=1;
+    }
     let minId = (id-1)*16;
     if(minId!=0){
         minId++;
@@ -27,6 +29,7 @@ window.addEventListener('load', function(){
         linksDePaginacion[0].setAttribute('href', `./articles.html?page=${id-1}`);
         linksDePaginacion[1].innerHTML=id;
         linksDePaginacion[2].setAttribute('href', `./articles.html?page=1`);
+        linksDePaginacion[2].innerHTML="Volver al inicio";
     }
 
     
@@ -45,13 +48,25 @@ function getPostBy(firstIndex=1, lastIndex=100){
                 return data.json();
             })
             .then(function(article){
-                let innerHTML=`<div class="item-thumbnail">
+                let innerHTML=`<div class="item-thumbnail" id="postId-${article.id}">
+                <img src="https://picsum.photos/id/${article.id}/300/200">
                 <div class="item-thumbnail-hover"></div>
+                <div class="preloader"></div>
                 <div class="title-container">
                     <h4 class="item-thumbnail-title"><a href="./article.html?postId=${article.id}">${article.title}</a></h4>
                 </div>
             </div>`;
                 articles.innerHTML+=innerHTML;
+                document.querySelector(`#postId-${article.id} img`).addEventListener('error', function(){
+                    document.querySelector('#articles').removeChild(document.querySelector(`#postId-${article.id}`))
+                })
+                setTimeout(()=>{
+                    try {
+                        document.querySelector(`#postId-${article.id}`).querySelector('.preloader').classList.add('display-none');
+                    } catch (error) {
+                        
+                    }
+                }, 2000);
             })
         }else{
             return false;

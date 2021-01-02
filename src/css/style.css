@@ -1,5 +1,6 @@
 /* https://flatuicolors.com/palette/defo */
 /* https://www.liternauts.com/ */
+/* https://picsum.photos/ */
 
 
 :root {
@@ -371,9 +372,11 @@ header {
     font-size: 16px;
     font-family: var(--libreBaskerville);
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 .main-article-p {
+    text-transform: capitalize;
     font-family: var(--sourceSansPro);
     font-weight: normal;
     color: #555;
@@ -521,6 +524,32 @@ header {
 .bg-gray{
     background: var(--gray);
 }
+
+.preloader {
+    width: 70px;
+    height: 70px;
+    border: 10px solid #eee;
+    border-top: 10px solid #666;
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    margin-left: 30%;
+    z-index: 10;
+    
+  }
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
 
 
