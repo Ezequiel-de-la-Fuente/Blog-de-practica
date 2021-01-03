@@ -8,14 +8,14 @@ window.addEventListener('load', function(){
     });
 
     let articles=document.querySelector('#main-articles');
-    console.table(articles)
+    // console.table(articles)
     for(let i=1;i<=4;i++){
         fetch(`https://jsonplaceholder.typicode.com/posts/${i}`)
             .then(article=>article.json())
             .then(article=>{
                 let innerHTML=`<article class="main-article">
                 <div class="main-article-img-container">
-                    <img src="https://picsum.photos/id/${article.id}/300/200" alt="img">
+                    <img src="https://picsum.photos/id/${article.id}/700/500" alt="img">
                 </div>
 
                 <h4 class="main-article-title">${article.title}</h4>

@@ -2,20 +2,24 @@
 
 window.addEventListener("load", function () {
     let postId = getParameterByName("postId");
-    console.log(postId)
+    // console.log(postId)
     if(!postId){
         postId=1;
     }
 
     let articles=document.querySelector('#main-articles');
     let arrayNumber=[];
-    console.table(articles)
+    // console.table(articles)
     for(let i=1;i<=4;i++){
         let number=1;
         do{
             number=getRandomInt(1, 100);
-            arrayNumber.push(number);
-        }while(number!==postId && !arrayNumber.includes(number));
+            if(!arrayNumber.includes(number)){
+                arrayNumber.push(number);
+            }else{
+                break;
+            }
+        }while(number!==postId);
         fetch(`https://jsonplaceholder.typicode.com/posts/${number}`)
             .then(article=>article.json())
             .then(article=>{
@@ -104,6 +108,7 @@ window.addEventListener("load", function () {
                     // [...document.querySelectorAll('.article-tipList-item span')].forEach((value, index)=>{
                     //     value.textContent=`${index+1}. ${value.textContent}`;
                     // })
+                    checkImages();
                 });
         });
 });
@@ -145,3 +150,11 @@ function getFormatedDate() {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
+
+function checkImages() { 
+    document.querySelectorAll("img").forEach(function(value) { 
+        value.onerror=function(){
+            value.setAttribute('src', './img/404.png');
+        }
+    }); 
+}; 

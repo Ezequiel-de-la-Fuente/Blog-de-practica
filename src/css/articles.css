@@ -192,3 +192,15 @@ header{
         margin: 40px 5px;
     }
 }
+
+@media screen and (max-width: 450px) {
+    .item-thumbnail{
+        width: 80vw;
+        height: 200px;
+        margin: 20px 0;
+    }
+
+    #presentation-three h1{
+        font-size: 30px;
+    }
+}

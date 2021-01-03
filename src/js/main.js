@@ -6,7 +6,6 @@
  * @description  El modulo principal, el que engloba las caracteristicas comunes de cada pagina.
  */
 window.addEventListener('load', function(){
-
     // MENU
     let menuResponsive=document.querySelector('.menu__responsive');
     let menuButton=document.querySelector('.menu-button');
