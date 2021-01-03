@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <script src="../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+
+    <!-- FONT FAMILY -->
+    <!-- Libre Baskerville & Source Sans Pro-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet">
+    <!-- SWEET ALERT 2 -->
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/article.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- JS -->
+    <script src="./js/main.js"></script>
+    <script src="./js/article.js"></script>
+
+    <title>BLOG</title>
+</head>
+
+<body>
+    <section id="global">
+
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li class="menu-title"><a href="./index.html" class="menu-title">Liternauts</a></li>
+
+                    <li class="menu-item"><a href="./index.html">Home</a></li>
+                    <li class="menu-item"><a href="./articles.html?page=1">Articles</a></li>
+                    <div>
+                        <li class="menu-item"><a class="sub-menu">Apps <i class="fas fa-sort-down"></i></a>
+                        </li>
+                        <div class="sub-menu-div display-none">
+                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story
+                                    planner</a></li>
+                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story
+                                    planner</a></li>
+                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story
+                                    planner</a></li>
+                        </div>
+                    </div>
+                    <li class="menu-item"><a href="./support.html">Support</a></li>
+
+
+
+                    <button class="menu-button display-none"><i class="fas fa-bars"></i></button>
+                </ul>
+
+                <ul class="menu__responsive display-none">
+                    <div>
+                        <li class="menu-item__responsive"><a href="./index.html">Home</a></li>
+                        <li class="menu-item__responsive"><a href="./articles.html">Articles</a></li>
+                        <li class="menu-item__responsive"><a href="./support.html">Support</a></li>
+                        <div>
+                            <li class="menu-item__responsive"><a class="sub-menu__responsive">Apps <span><i
+                                            class="fas fa-sort-down" id="menu-item__icon"></i></span></a></li>
+                            <div class="sub-menu__responsive-div display-none">
+                                <li class="menu-item__responsive"><a href="#">Story planner</a></li>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="article">
+        </section>
+        
+        <section id="main-articles">
+                <!-- <article class="main-article">
+                    <div class="main-article-img-container">
+                        <img src="https://source.unsplash.com/random/300x200"" alt=" img">
+                    </div>
+                    <h4 class="main-article-title">How to Introduce Conflict in a Story</h4>
+                    <p class="main-article-p">In a good story, conflict is everywhere. In addition to the main conflict,
+                        you can add peripheral conflicts to create subplots, internal struggles...</p>
+                    <a href="#" class="btn btn-orange">Reed more...</a>
+                </article>
+
+                <article class="main-article">
+                    <div class="main-article-img-container">
+                        <img src="https://source.unsplash.com/random/300x200"" alt=" img">
+                    </div>
+                    <h4 class="main-article-title">How to Introduce Conflict in a Story</h4>
+                    <p class="main-article-p">In a good story, conflict is everywhere. In addition to the main conflict,
+                        you can add peripheral conflicts to create subplots, internal struggles...</p>
+                    <a href="#" class="btn btn-orange">Reed more...</a>
+                </article>
+
+                <article class="main-article">
+                    <div class="main-article-img-container">
+                        <img src="https://source.unsplash.com/random/300x200"" alt=" img">
+                    </div>
+                    <h4 class="main-article-title">How to Introduce Conflict in a Story</h4>
+                    <p class="main-article-p">In a good story, conflict is everywhere. In addition to the main conflict,
+                        you can add peripheral conflicts to create subplots, internal struggles...</p>
+                    <a href="#" class="btn btn-orange">Reed more...</a>
+                </article>
+
+                <article class="main-article">
+                    <div class="main-article-img-container">
+                        <img src="https://source.unsplash.com/random/300x200"" alt=" img">
+                    </div>
+                    <h4 class="main-article-title">How to Introduce Conflict in a Story</h4>
+                    <p class="main-article-p">In a good story, conflict is everywhere. In addition to the main conflict,
+                        you can add peripheral conflicts to create subplots, internal struggles...</p>
+                    <a href="#" class="btn btn-orange">Reed more...</a>
+                </article>
+            </section> -->
+        </section>
+
+        <section id="suscribe-form-section">
+            <h2 class="suscribe-form-section-title">Subcribe form</h2>
+            <span class="suscribe-form-section-subtitle">Subscribe to our Newsletter</span>
+            <form id="suscribe-form">
+                <input type="text" placeholder="Enter your Email Address..." name="email">
+                <input type="submit" value="SUBSCRIBE" class="btn btn-red">
+            </form>
+            <input type="submit" value="SUBSCRIBE" class="btn btn-red btn-mobile" form="suscribe-form">
+        </section>
+
+
+
+        <section id="share-section">
+            <h2 class="share-section-title">Share this page!</h2>
+            <div class="share-section-button-container">
+                <a href="https://facebook.com" class="btn-share" target="__blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="btn-share" target="__blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://whatsapp.com" class="btn-share" target="__blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </section>
+
+
+        <footer id="footer">
+            <span><a href="./about.html">About us</a> Copyright <i class="fas fa-copyright"></i> 2017 Liternauts.</span>
+        </footer>
+
+    </section>
+</body>
+
+</html>

@@ -20,7 +20,7 @@ window.addEventListener('load', function(){
 
                 <h4 class="main-article-title">${article.title}</h4>
                 <p class="main-article-p">${article.body}</p>
-                <a href="./article.html?postId-${article.id}" class="btn btn-orange">Reed more...</a>
+                <a href="./article.html?postId=${article.id}" class="btn btn-orange">Reed more...</a>
                 </article>`;
 
                 articles.innerHTML+=innerHTML;

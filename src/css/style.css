@@ -24,6 +24,7 @@ header {
     position: sticky;
     top: 0px;
     background: #fff;
+    z-index: 100000;
 }
 
 .menu {
@@ -649,7 +650,8 @@ header {
     }
 
     .main-article-p {
-        margin: 0 20%;
+        margin: 0 20px;
+        text-align: justify;
     }
 
     .main-article .btn {
