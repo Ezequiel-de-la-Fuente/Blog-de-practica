@@ -1,5 +1,8 @@
 'use strict';
-
+import {fetchPostBy} from './fetch.js'
+/**
+ * @module Index
+ */
 window.addEventListener('load', function(){
     let btnMoveDown = document.querySelector('.btn-move-down');
     btnMoveDown.addEventListener('click', function(){
@@ -8,25 +11,15 @@ window.addEventListener('load', function(){
     });
 
     let articles=document.querySelector('#main-articles');
-    // console.table(articles)
     for(let i=1;i<=4;i++){
-        fetch(`https://jsonplaceholder.typicode.com/posts/${i}`)
-            .then(article=>article.json())
-            .then(article=>{
-                let innerHTML=`<article class="main-article">
-                <div class="main-article-img-container">
-                    <img src="https://picsum.photos/id/${article.id}/700/500" alt="img">
-                </div>
-
-                <h4 class="main-article-title">${article.title}</h4>
-                <p class="main-article-p">${article.body}</p>
-                <a href="./article.html?postId=${article.id}" class="btn btn-orange">Reed more...</a>
-                </article>`;
-
-                articles.innerHTML+=innerHTML;
-            })
+        fetchPostBy(i)
+            .then(post=>{
+                articles.innerHTML+=createMainArticle(post);
+            });
     }
 });
+
+
 
 /**
  * Inicia la animacion de desplazamiento hacia abajo.
@@ -44,4 +37,21 @@ function startMoveDownAnimation() {
             }
         }
     }, 1);
+}
+/**
+ * 
+ * @param {{id:String, title:String, body:String}} post 
+ * @returns {String} innerHTML
+ */
+function createMainArticle(post){
+    let innerHTML = `<article class="main-article">
+                <div class="main-article-img-container">
+                    <img src="https://picsum.photos/id/${post.id}/700/500" alt="img">
+                </div>
+
+                <h4 class="main-article-title">${post.title}</h4>
+                <p class="main-article-p">${post.body}</p>
+                <a href="./article.html?postId=${post.id}" class="btn btn-orange">Reed more...</a>
+                </article>`;
+    return innerHTML;
 }

@@ -1,47 +1,55 @@
 "use strict";
-
+/**
+ * @module Article
+ */
+import {getParameterByName, getFormatedDate, getRandomInt, checkImages} from './func.js';
+import {fetchPostBy, fetchUserBy} from './fetch.js'
 window.addEventListener("load", function () {
     let postId = getParameterByName("postId");
-    // console.log(postId)
     if(!postId){
         postId=1;
     }
 
     let articles=document.querySelector('#main-articles');
-    let arrayNumber=[];
-    // console.table(articles)
-    for(let i=1;i<=4;i++){
-        let number=1;
-        do{
-            number=getRandomInt(1, 100);
-            if(!arrayNumber.includes(number)){
-                arrayNumber.push(number);
-            }else{
-                break;
-            }
-        }while(number!==postId);
-        fetch(`https://jsonplaceholder.typicode.com/posts/${number}`)
-            .then(article=>article.json())
-            .then(article=>{
-                let innerHTML=`<article class="main-article">
+    let randomIds=generateRandomIds([parseInt(postId)], 4);
+    
+
+    loadMainPosts(randomIds, articles);
+    loadPost(postId);
+});
+/**
+ * 
+ * @param {Array<number>} randomIds 
+ * @param {HTMLCollection} articles 
+ */
+function loadMainPosts(randomIds, articles) {
+    for (let i = 0; i < 4; i++) {
+        fetchPostBy(randomIds[i])
+            .then(post => {
+                let innerHTML = `<article class="main-article">
                 <div class="main-article-img-container">
-                    <img src="https://picsum.photos/id/${article.id}/300/200" alt="img">
+                    <img src="https://picsum.photos/id/${post.id}/300/200" alt="img">
                 </div>
 
-                <h4 class="main-article-title">${article.title}</h4>
-                <p class="main-article-p">${article.body}</p>
-                <a href="./article.html?postId=${article.id}" class="btn btn-orange">Reed more...</a>
+                <h4 class="main-article-title">${post.title}</h4>
+                <p class="main-article-p">${post.body}</p>
+                <a href="./article.html?postId=${post.id}" class="btn btn-orange">Reed more...</a>
                 </article>`;
 
-                articles.innerHTML+=innerHTML;
-            });
-        }
-    fetch("https://jsonplaceholder.typicode.com/posts/" + postId)
-        .then((post) => post.json())
+                articles.innerHTML += innerHTML;
+            }
+            );
+    }
+}
+/**
+ * 
+ * @param {string | number} postId 
+ */
+function loadPost(postId) {
+    fetchPostBy(postId)
         .then((post) => {
             let articleDiv = document.querySelector(".article");
-            fetch("https://jsonplaceholder.typicode.com/users/" + post.userId)
-                .then((user) => user.json())
+            fetchUserBy(postId)
                 .then((user) => {
                     articleDiv.innerHTML = `<h1 class="article-title">${post.title}</h1>
                     <h3 class="article-info">By ${user.username} posted ${getFormatedDate()}</h3>
@@ -105,56 +113,26 @@ window.addEventListener("load", function () {
                                 ducimus quo delectus iste reiciendis nisi obcaecati.</p>
                         </div>
                     </div>`;
-                    // [...document.querySelectorAll('.article-tipList-item span')].forEach((value, index)=>{
-                    //     value.textContent=`${index+1}. ${value.textContent}`;
-                    // })
                     checkImages();
                 });
         });
-});
+}
 
 /**
- *
- * @param {String} name
+ * 
+ * @param {Array<number>} randomIds
+ * @param {number} cant 
+ * @param {number=} min
+ * @param {number=} max
  */
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-function getFormatedDate() {
-    let date=new Date().toLocaleDateString('lts');
-    let dateString = date.split('/');
-    let month = parseInt(dateString[1]);
-    let monthArray = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
-    return `${monthArray[month-1]} ${dateString[0]}, ${dateString[2]}`;
-}
-
-// Retorna un entero aleatorio entre min (incluido) y max (excluido)
-// ¡Usando Math.round() te dará una distribución no-uniforme!
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-function checkImages() { 
-    document.querySelectorAll("img").forEach(function(value) { 
-        value.onerror=function(){
-            value.setAttribute('src', './img/404.png');
+function generateRandomIds(randomIds, cant, min=1, max=100){
+    for(let i=1;i<=cant;i++){
+        let number=getRandomInt(min,max);
+        while(randomIds.includes(number)){
+            number=getRandomInt(min, max);
         }
-    }); 
-}; 
+        randomIds.push(number);
+    }
+    randomIds.shift();
+    return randomIds;
+}
