@@ -2,7 +2,6 @@
 /* https://www.liternauts.com/ */
 /* https://picsum.photos/ */
 
-
 :root {
     --libreBaskerville: "Libre Baskerville", serif;
     --sourceSansPro: "Source Sans Pro", sans-serif;
@@ -37,7 +36,6 @@ header {
     align-content: center;
 }
 
-
 .menu-title {
     width: 50%;
 }
@@ -66,15 +64,12 @@ header {
     align-self: center;
 }
 
-.menu-item{
+.menu-item {
     cursor: pointer;
     width: 100px;
     text-align: center;
     margin-top: 12px;
 }
-
-
-
 
 .menu-item a {
     font-weight: bold;
@@ -94,26 +89,26 @@ header {
     color: var(--sunFlower);
 }
 
-.menu .sub-menu-div{
+.menu .sub-menu-div {
     position: absolute;
     margin-left: 15px;
     background: #eaeaea;
     width: 150px;
 }
 
-.submenu-item{
+.submenu-item {
     margin: 20px 0;
     padding: 0 10px;
     width: 200px;
     text-align: left;
 }
 
-.submenu-item a{
+.submenu-item a {
     text-transform: capitalize;
     text-align: left;
 }
 
-.menu-item .menu-item__active{
+.menu-item .menu-item__active {
     border-bottom: 4px solid var(--sunFlower);
     border-radius: 6px;
     color: var(--sunFlower);
@@ -175,11 +170,11 @@ header {
     transition: background ease 300ms;
     margin: 0 50px;
     margin-right: 35px;
-    border-radius: 10px;
+    border-radius: .25em;
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     color: #fff;
 }
 
@@ -217,17 +212,15 @@ header {
     background: #111;
 }
 
-.btn:active{
+.btn:active {
     background: #2be95b;
 }
-
 
 .btn-move-down svg {
     position: relative;
     animation: 500ms infinite alternate move;
     animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
 }
-
 
 @keyframes move {
     from {
@@ -239,26 +232,23 @@ header {
     }
 }
 
-.presentation-buttons-div{
-    
+.presentation-buttons-div {
 }
 
-.presentation-buttons-div .btn{
+.presentation-buttons-div .btn {
     margin-left: 0;
     margin-right: 0;
 }
 
-
-.presentation-buttons-div .btn:first-child{
+.presentation-buttons-div .btn:first-child {
     margin-right: 40px;
 }
 
-.presentation-buttons-div .btn:nth-child(1){
+.presentation-buttons-div .btn:nth-child(1) {
     margin-left: 40px;
 }
 
 /* MENU RESPONSIVE */
-
 
 .menu-button {
     outline: none;
@@ -282,7 +272,7 @@ header {
     transition: all 400ms ease;
 }
 
-.menu__responsive-show{
+.menu__responsive-show {
     left: 0;
 }
 
@@ -324,16 +314,16 @@ header {
     display: inline-block;
 }
 
-.sub-menu__responsive span{
+.sub-menu__responsive span {
     position: relative;
     margin-left: 60%;
 }
 
-.sub-menu__responsive-div{
+.sub-menu__responsive-div {
     height: auto;
 }
 
-.sub-menu__responsive-div .menu-item__responsive{
+.sub-menu__responsive-div .menu-item__responsive {
     text-transform: capitalize;
 }
 
@@ -348,15 +338,13 @@ header {
     color: #fff;
 }
 
-#presentation-title__secondary span{
+#presentation-title__secondary span {
     color: var(--alizarin);
 }
 
 #presentation-subtitle__secondary {
     color: #fff;
 }
-
-
 
 /* MAIN */
 
@@ -410,7 +398,6 @@ header {
     margin-bottom: 10px;
     display: flex;
     align-content: center;
-
 }
 .main-article img {
     object-fit: contain;
@@ -440,7 +427,7 @@ header {
     margin-bottom: 20px;
 }
 
-.main-article .btn{
+.main-article .btn {
     display: block;
     margin: 0 auto;
     width: 120px;
@@ -544,7 +531,7 @@ header {
     background: var(--alizarin);
 }
 
-.btn-mobile{
+.btn-mobile {
     display: none;
     cursor: pointer;
 }
@@ -575,7 +562,7 @@ header {
 }
 
 /* Fijos */
-.display-none{
+.display-none {
     display: none;
 }
 
@@ -583,7 +570,7 @@ header {
     display: block;
 }
 
-.bg-gray{
+.bg-gray {
     background: var(--gray);
 }
 
@@ -602,187 +589,192 @@ header {
     align-self: center;
     margin-left: 30%;
     z-index: 10;
-    
-  }
-  @keyframes girar {
+}
+@keyframes girar {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
+.swal2-container .btn{
+    text-transform: initial;
+}
 
+.div{
+    flex-direction: column;
+}
 
-  @media screen and (min-width:1500px){
-      .menu-item{
+.div::before{
+    opacity: 0;
+    position: absolute;
+}
+.swal2-container{
+    z-index: 1000000000000;
+}
+@media screen and (min-width: 1500px) {
+    .menu-item {
         width: 150px;
-      }
-      .menu div{
-          width: 150px;
-      }
-      .menu-item a{
-          font-size: 20px;
-          
-      }
-      .menu .sub-menu-div{
-          margin-left: 31px;
-          width: 250px;
-      }
+    }
+    .menu div {
+        width: 150px;
+    }
+    .menu-item a {
+        font-size: 20px;
+    }
+    .menu .sub-menu-div {
+        margin-left: 31px;
+        width: 250px;
+    }
 
-      .submenu-item{
-          width: 100%;
-      }
-  }
+    .submenu-item {
+        width: 100%;
+    }
+}
 
-  
-  @media screen and (max-width:1000px){
-      .main-article{
-          margin-left: 30px;
-          margin-right: 30px;
-      }
-  }
+@media screen and (max-width: 1000px) {
+    .main-article {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .menu-item a{
+        margin-right: 10px;
+    }
+}
 
-  @media screen and (max-width:900px){
-      #presentation-one{
-          height: 900px;
-          background-position: center;
-      }
+@media screen and (max-width: 900px) {
+    #presentation-one {
+        height: 900px;
+        background-position: center;
+    }
 
-      .presentation__secondary{
-          height: 700px;
-      }
+    .presentation__secondary {
+        height: 700px;
+    }
 
-      #presentation-one .btn{
-          margin: 10px 0;
-          width: 200px; 
-      }
-      .presentation-buttons div{
+    #presentation-one .btn {
+        margin: 10px 0;
+        width: 200px;
+    }
+    .presentation-buttons div {
         display: flex;
         flex-direction: column;
         align-items: center;
-      }
-  }
-  @media screen and (max-width:740px){
-      .menu-item{
-          display: none;
-      }
-      .menu-button{
-          display: block;
-      }
-      .menu__responsive{
-          display: block;
-          width: 60%;
-      }
-      
+    }
+}
+@media screen and (max-width: 740px) {
+    .menu-item {
+        display: none;
+    }
+    .menu-button {
+        display: block;
+    }
+    .menu__responsive {
+        display: block;
+        width: 60%;
+    }
 
+    .presentation-title {
+        font-size: 50px;
+    }
 
-      .presentation-title{
-          font-size: 50px;
-      }
+    .presentation-subtitle {
+        font-size: 22px;
+    }
 
-      .presentation-subtitle{
-          font-size: 22px;
-      } 
+    .presentation__secondary {
+        background-position: -40vw;
+    }
 
-      .presentation__secondary{
-        background-position:-40vw;
-      }
+    .main-title {
+        font-size: 35px;
+    }
 
-      .main-title{
-          font-size: 35px;
-      }
+    .main-article img {
+        width: 80vw;
+        height: auto;
+    }
 
-      .main-article img{
-          width: 80vw;
-          height: auto;
-      }
-
-      .main-article{
+    .main-article {
         margin-left: 10px;
         margin-right: 10px;
-        }
+    }
 
-      .main-article .btn{
-          display: block;
-          margin: 0 auto;
-          padding: 7px;
-          width: 150px;
-          text-align: center;
-      }
+    .main-article .btn {
+        display: block;
+        margin: 0 auto;
+        padding: 7px;
+        width: 150px;
+        text-align: center;
+    }
 
-      .main-article-p{
-          margin-left:0;
-          margin-right: 0;
-          text-align: left;
-      }
+    .main-article-p {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+    }
 
-
-      .suscribe-form-section-title,
-      .share-section-title{
-          font-size: 30px;
-      }
-  }
-
-
-  @media screen and (max-width:500px){
-
-    .presentation__secondary{
-        background-position:-70vw;
-      }
-
-      #suscribe-form{
-        margin: 40px 0;
-      }
-
-      #suscribe-form-section .btn{
-          display: none;
-      }
-
-      #suscribe-form-section .btn-mobile{
-          display: block;
-          border: none;
-          outline: none;
-      }
-      #footer{
-          height: 100px;
-      }
-      #footer a{
-         display: block;
-      }
-  }
-
-
-  @media screen and (max-width:350px){
-      .menu-title{
-          font-size: 30px;
-      }
-      .presentation-title{
+    .suscribe-form-section-title,
+    .share-section-title {
         font-size: 30px;
-      }
-      .presentation-subtitle{
-          font-size: 20px;
-          margin-left: 10px;
-          margin-right: 10px;
-      }
-      .btn{
-          font-size: 16px;
-      }
-      #presentation-one .btn{
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .presentation__secondary {
+        background-position: -70vw;
+    }
+
+    #suscribe-form {
+        margin: 40px 0;
+    }
+
+    #suscribe-form-section .btn {
+        display: none;
+    }
+
+    #suscribe-form-section .btn-mobile {
+        display: block;
+        border: none;
+        outline: none;
+    }
+    #footer {
+        height: 100px;
+    }
+    #footer a {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .menu-title {
+        font-size: 30px;
+    }
+    .presentation-title {
+        font-size: 30px;
+    }
+    .presentation-subtitle {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .btn {
+        font-size: 16px;
+    }
+    #presentation-one .btn {
         width: 70vw;
         padding: 15px 0;
-      }
+    }
 
-      .suscribe-form-section-title,
-      .share-section-title{
-          font-size: 20px;
-      }
+    .suscribe-form-section-title,
+    .share-section-title {
+        font-size: 20px;
+    }
 
-      .presentation__secondary{
-        background-position:-100vw;
+    .presentation__secondary {
+        background-position: -100vw;
         height: 500px;
-      }
-  }
-
-
+    }
+}
