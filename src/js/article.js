@@ -2,33 +2,30 @@
 /**
  * @module Article
  */
-import {getParameterByName, getFormatedDate, getRandomInt, checkImages} from './func.js';
-import {fetchPostBy, fetchUserBy, loadMainPosts} from './fetch.js'
+import { getParameterByName, getFormatedDate, getRandomInt, checkImages, getUserOnline } from "./func.js";
+import { fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy } from "./fetch.js";
 window.addEventListener("load", function () {
     let postId = getParameterByName("postId");
-    if(!postId){
-        postId=1;
+    if (!postId) {
+        postId = 1;
     }
 
-    let articles=document.querySelector('#main-articles');
-    let randomIds=generateRandomIds([parseInt(postId)], 4);
-    
+    let articles = document.querySelector("#main-articles");
+    let randomIds = generateRandomIds([parseInt(postId)], 4);
 
     loadMainPosts(randomIds, articles);
     loadPost(postId);
 });
 
 /**
- * 
- * @param {string | number} postId 
+ *
+ * @param {string | number} postId
  */
 function loadPost(postId) {
-    fetchPostBy(postId)
-        .then((post) => {
-            let articleDiv = document.querySelector(".article");
-            fetchUserBy(postId)
-                .then((user) => {
-                    articleDiv.innerHTML = `<h1 class="article-title">${post.title}</h1>
+    fetchPostBy(postId).then((post) => {
+        let articleDiv = document.querySelector(".article");
+        fetchUserBy(postId).then((user) => {
+            articleDiv.innerHTML = `<h1 class="article-title">${post.title}</h1>
                     <h3 class="article-info">By ${user.username} posted ${getFormatedDate()}</h3>
                     <p class="article-p">Let’s imagine a man called Peter leaving the gym and running to his car with his duffel
                         bag over his head to protect himself from the rain. When he reaches the car and is about to open the
@@ -89,24 +86,68 @@ function loadPost(postId) {
                                 unde omnis consequuntur, esse, distinctio nostrum cupiditate accusantium molestiae ex, ipsam
                                 ducimus quo delectus iste reiciendis nisi obcaecati.</p>
                         </div>
+
+                        
+
+                    </div>
+                    <div class="comments">
+                        <h2>Comments</h2>
                     </div>`;
-                    checkImages();
+            fetchCommentsBy(postId)
+            .then(comments=>{
+                comments.forEach(comment=>{
+                    let commentObj=comment;
+                    commentObj.username=commentObj.email.split('@')[0];
+                    // console.table(commentObj);
+                    document.querySelector('.article .comments').innerHTML+=`
+                    <div class="comment">
+                        <div class="comment-picture">
+                            <div class="comment-picture-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="comment-header">
+                            <h4 class="comment-username">${commentObj.username}</h4>
+                        </div>
+                        <p class="comment-p">
+                            ${commentObj.body}
+                        </p>
+                        <span class="comment-date">Written on ${getFormatedDate()}.</span>
+                        <button type="button">Answer</button>
+                        
+                    </div>`;
                 });
+                document.querySelector('.article .comments').innerHTML+=
+                `<form class="form-comment">
+                    <div class="comment-picture">
+                        <div class="comment-picture-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="comment-header">
+                        <h4 class="comment-username">${getUserOnline().login}</h4>
+                    </div>
+                    <textarea placeholder="Write a comment" rows="8"></textarea>
+                    <button type="submit">Publish</button>
+                </form>`
+            });
+            checkImages();
         });
+    });
 }
 
 /**
- * 
+ *
  * @param {Array<number>} randomIds
- * @param {number} cant 
+ * @param {number} cant
  * @param {number=} min
  * @param {number=} max
  */
-function generateRandomIds(randomIds, cant, min=1, max=100){
-    for(let i=1;i<=cant;i++){
-        let number=getRandomInt(min,max);
-        while(randomIds.includes(number)){
-            number=getRandomInt(min, max);
+function generateRandomIds(randomIds, cant, min = 1, max = 100) {
+    for (let i = 1; i <= cant; i++) {
+        let number = getRandomInt(min, max);
+        while (randomIds.includes(number)) {
+            number = getRandomInt(min, max);
         }
         randomIds.push(number);
     }

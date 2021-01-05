@@ -41,13 +41,16 @@
                         <li class="menu-item"><a class="sub-menu">Apps</a>
                         </li>
                         <div class="sub-menu-div display-none">
-                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story planner</a></li>
-                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story planner</a></li>
-                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story planner</a></li>
+                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story
+                                    planner</a></li>
+                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story
+                                    planner</a></li>
+                            <li class="menu-item submenu-item"><a href="https://google.com" target="__blank">Story
+                                    planner</a></li>
                         </div>
                     </div>
-                    <li class="menu-item"><a id="sing-in">Sing in</a></li>
-
+                    <li class="menu-item"><a id="log-in">Login</a></li>
+                    <li class="menu-item display-none"><a id="log-out">Logout</a></li>
 
                     <button class="menu-button display-none"><i class="fas fa-bars"></i></button>
                 </ul>
@@ -56,16 +59,17 @@
                     <div>
                         <li class="menu-item__responsive"><a href="./index.html">Home</a></li>
                         <li class="menu-item__responsive"><a href="./articles.html?page=1">Articles</a></li>
-                        <li class="menu-item__responsive"><a href="./support.html">Support</a></li>
+                        <li class="menu-item__responsive"><a id="log-in-responsive">Login</a></li>
+                        <li class="menu-item__responsive display-none"><a id="log-out-responsive">Logout</a></li>
                         <div>
                             <li class="menu-item__responsive"><a class="sub-menu__responsive">Apps <span><i
-                                class="fas fa-sort-down" id="menu-item__icon"></i></span></a></li>
+                                            class="fas fa-sort-down" id="menu-item__icon"></i></span></a></li>
                             <div class="sub-menu__responsive-div display-none">
                                 <li class="menu-item__responsive"><a href="#">Story planner</a></li>
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </ul>
             </nav>
@@ -81,10 +85,10 @@
                 software, books, writing tools, tips... Let us spark your writing!
             </h2>
             <section class="presentation-buttons">
-               <div class="presentation-buttons-div">
-                <a href="./apps.html" class="btn btn-red">Apps for writers</a>
-                <a href="./articles.html?page=1" class="btn btn-orange">Articles for writers</a>
-               </div>
+                <div class="presentation-buttons-div">
+                    <a href="./apps.html" class="btn btn-red">Apps for writers</a>
+                    <a href="./articles.html?page=1" class="btn btn-orange">Articles for writers</a>
+                </div>
                 <div>
                     <a class="btn-move-down"><i class="fas fa-chevron-down"></i></a>
                 </div>
@@ -140,51 +144,55 @@
                     <a href="#" class="btn btn-orange">Reed more...</a>
                 </article>
             </section> -->
-        </section>
-
-
-
-        <section class="presentation__secondary">
-            <h1 class="presentation-title" id="presentation-title__secondary"><span>Story Planner</span> for Writers
-            </h1>
-            <h2 class="presentation-subtitle" id="presentation-subtitle__secondary">Create awesome outlines for your
-                novels and screenplays and sync them on all your devices!
-            </h2>
-            <section class="presentation-buttons">
-                <a href="#" class="btn btn-red">Get more info</a>
             </section>
+
+
+
+            <section class="presentation__secondary">
+                <h1 class="presentation-title" id="presentation-title__secondary"><span>Story Planner</span> for Writers
+                </h1>
+                <h2 class="presentation-subtitle" id="presentation-subtitle__secondary">Create awesome outlines for your
+                    novels and screenplays and sync them on all your devices!
+                </h2>
+                <section class="presentation-buttons">
+                    <a href="#" class="btn btn-red">Get more info</a>
+                </section>
+            </section>
+
+
+
+            <section id="suscribe-form-section">
+                <h2 class="suscribe-form-section-title">Subcribe form</h2>
+                <span class="suscribe-form-section-subtitle">Subscribe to our Newsletter</span>
+                <form id="suscribe-form">
+                    <input type="text" placeholder="Enter your Email Address..." name="email">
+                    <input type="submit" value="SUBSCRIBE" class="btn btn-red">
+                </form>
+                <input type="submit" value="SUBSCRIBE" class="btn btn-red btn-mobile" form="suscribe-form">
+            </section>
+
+
+
+            <section id="share-section">
+                <h2 class="share-section-title">Share this page!</h2>
+                <div class="share-section-button-container">
+
+                    <a href="//www.facebook.com/sharer.php?u=https://google.com" class="btn-share" target="__blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/intent/tweet?text=Este es un blog de practicas&url=https://google.com&hashtags=blogDePrueba"
+                        class="btn-share" target="__blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://api.whatsapp.com/send?text=Este es un blog de practicas" class="btn-share"
+                        target="__blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </section>
+
+
+            <footer id="footer">
+                <span><a href="./about.html">About us</a> Copyright <i class="fas fa-copyright"></i> 2017
+                    Liternauts.</span>
+            </footer>
+
         </section>
-
-
-
-        <section id="suscribe-form-section">
-            <h2 class="suscribe-form-section-title">Subcribe form</h2>
-            <span class="suscribe-form-section-subtitle">Subscribe to our Newsletter</span>
-            <form id="suscribe-form">
-                <input type="text" placeholder="Enter your Email Address..." name="email">
-                <input type="submit" value="SUBSCRIBE" class="btn btn-red">
-            </form>
-            <input type="submit" value="SUBSCRIBE" class="btn btn-red btn-mobile" form="suscribe-form">
-        </section>
-
-
-
-        <section id="share-section">
-            <h2 class="share-section-title">Share this page!</h2>
-            <div class="share-section-button-container">
-
-                <a href="//www.facebook.com/sharer.php?u=https://google.com" class="btn-share" target="__blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com/intent/tweet?text=Este es un blog de practicas&url=https://google.com&hashtags=blogDePrueba" class="btn-share" target="__blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://api.whatsapp.com/send?text=Este es un blog de practicas" class="btn-share" target="__blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </section>
-
-
-        <footer id="footer">
-            <span><a href="./about.html">About us</a> Copyright <i class="fas fa-copyright"></i> 2017 Liternauts.</span>
-        </footer>
-
-    </section>
 </body>
 
 </html>

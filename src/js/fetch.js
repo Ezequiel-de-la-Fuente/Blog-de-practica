@@ -46,4 +46,10 @@ function loadMainPosts(randomIds, articles) {
     }
 }
 
-export {fetchPostBy, fetchUserBy, loadMainPosts}
+function fetchCommentsBy(postId){
+    return fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+    .then(comments=>comments.json());
+    
+}
+
+export {fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy}

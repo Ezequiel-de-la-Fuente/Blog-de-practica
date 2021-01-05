@@ -108,6 +108,124 @@
    height: 140px;
 }
 
+.comments h2{
+    font-family: var(--libreBaskerville);
+    margin-bottom:10px;
+}
+
+.comment{
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    margin-bottom: 20px;
+
+}
+
+.comment-picture{
+    /* grid-column: 1; */
+    grid-row: 1/4;
+}
+
+.comment-picture-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5px;
+}
+
+.comment-picture-icon svg{
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.comment-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+    align-content: center;
+    margin-bottom: 6px;
+}
+
+.comment-username{
+    margin-right: 10px;
+    font-family: var(--libreBaskerville);
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.comment-date{
+    font-weight: var(--sourceSansPros);
+    font-weight: lighter;
+    font-size: 15px;
+    color: #999;
+    grid-row: 3/ span 1;
+    grid-column: 2/3;
+    margin: 5px 0;
+}
+
+.comment-p{
+    grid-column: 2/3;
+    font-weight: var(--sourceSansPros);
+}
+
+.comment button{
+    color: var(--alizarin);
+    font-weight: var(--libreBaskervilles);
+    margin: 10px 0;
+    font-weight: bold;
+    font-weight: 20px;
+    width: 70px;
+    text-transform: uppercase;
+    text-align: left;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    grid-row: 4/ span 1;
+    grid-column: 2/3;
+}
+
+.comment button:hover{
+    text-decoration: underline;
+}
+
+.form-comment{
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    margin-bottom: 20px;
+}
+
+.form-comment textarea{
+    font-weight: var(--sourceSansPros);
+    font-size: 18px;
+    padding: 5px 8px;
+    outline: none;
+}
+
+.form-comment button{
+    display: block;
+    margin-right: auto;
+    padding: 3px;
+    color: var(--alizarin);
+    font-weight: var(--libreBaskervilles);
+    margin: 10px 0;
+    font-weight: bold;
+    font-weight: 20px;
+    width: 70px;
+    text-transform: uppercase;
+    text-align: left;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.form-comment button:hover{
+    text-decoration: underline;
+}
 
 @media screen and (max-width: 1000px) {
     .article{

@@ -1,4 +1,4 @@
-import { toggleShow, checkEmail } from "./func.js";
+import { toggleShow, checkEmail, validatePassword, getUserOnline} from "./func.js";
 ("use strict");
 
 /**
@@ -6,6 +6,15 @@ import { toggleShow, checkEmail } from "./func.js";
  * @description  El modulo principal, el que engloba las caracteristicas comunes de cada pagina.
  */
 window.addEventListener("load", function () {
+    // USER ONLINE
+    userOnline();
+
+    // LOG OUT
+    logOut();
+
+    // Login & Sing up
+    loginaAndSingUp();
+
     // MENU
     let menuResponsive = document.querySelector(".menu__responsive");
     let menuButton = document.querySelector(".menu-button");
@@ -40,7 +49,7 @@ window.addEventListener("load", function () {
         let inputEmail = formNewsLater.querySelector('input[name="email"]');
         let email = inputEmail.value;
         let esValido = checkEmail(email);
-        let existe = isEmailExists(email);
+        let existe = isEmailSubscribe(email);
 
         if (esValido && !existe) {
             let emails = JSON.parse(localStorage.getItem("emailsNewslastter"));
@@ -74,32 +83,6 @@ window.addEventListener("load", function () {
         e.preventDefault();
     });
 
-    // SUPORT
-    document.querySelector("#sing-in").addEventListener("click", function () {
-        sing("in").then((result) => {
-            if (result.isConfirmed) {
-                if (result.value) {
-                    if (result.value.login && result.value.password) {
-                        Swal.fire(
-                            `
-                                    Login: ${result.value.login}
-                                    Password: ${result.value.password}
-                                    `.trim()
-                        );
-                    }
-                }
-            } else if (result.isDenied) {
-                sing("up").then((result) => {
-                    if (result.isConfirmed) {
-                        if (result.value) {
-                            console.log(`Login: ${result.value.login}\nPassword: ${result.value.password}`);
-                        }
-                    }
-                });
-            }
-        });
-    });
-
     document.addEventListener("click", function (e) {
         if (!e.target.classList.contains("sub-menu")) {
             resetSubMenu(subMenuDiv, subMenuBtn);
@@ -115,177 +98,9 @@ window.addEventListener("load", function () {
     });
 });
 
-/**
- *
- * @param {String} password
- */
-function validatePassword(
-    password,
-    options = { minCharacters: 8, maxCharacters: 20,containLetters: true, containNumbers: true }
-) {
-    let length = password.length;
-    let state = "Good";
-    let minCharacters=false;
-    let maxCharacters=false;
-    let containNumbers=false;
-    let containLetters=false;
 
-    if (password.match(/\W/g)) return "Contain special characters!";
 
-    if (length >= options.minCharacters && length <= options.maxCharacters) {
-        minCharacters=true;
-        maxCharacters=true;
-        if (options.containLetters) {
-            let letters = password.match(/[a-zA-Z]/gi);
-            if (letters) {
-                containLetters=true;
-            } else {
-                state = "Does not contain letters!";
-            }
-        }
-        if (options.containNumbers) {
-            let numbers = password.match(/\d/gi);
-            if (!numbers) {
-                state = "Does not contain numbers!";
-            }else{
-                containNumbers=true;
-            }
-        }
-    } else if (length < options.minCharacters) {
-        state = `Minimum ${options.minCharacters} characters in length!`;
-    } else if (length > options.maxCharacters) {
-        state = `Maximum ${options.maxCharacters} characters in length!`;
-    }
-
-    if(state!=='Good'){
-        state="";
-        if(minCharacters && maxCharacters){
-            state += `<div><i class="fas fa-check"></i> ${options.minCharacters}-${options.maxCharacters} characters</div>`;
-        }else{
-            state += `<div><i class="fas fa-times"></i> ${options.minCharacters}-${options.maxCharacters} characters</div>`;
-        }
-
-        if(containLetters & containNumbers){
-            state += '<div><i class="fas fa-check"></i> Contain letters and numbers!</div>' ;
-        }else{
-            state += '<div><i class="fas fa-times"></i> Contain letters and numbers!</div>' ;
-        }
-    }
-    return state;
-}
-
-function sing(type) {
-    let denyButtonText, preConfirm;
-    if (type === "in") {
-        denyButtonText = "Create an account";
-        preConfirm = singIn;
-    } else if (type === "up") {
-        denyButtonText = "Cancel";
-        preConfirm = singUp;
-    }
-    setTimeout(()=>{
-        document.querySelector('#swal2-checkbox').addEventListener('click', function(){
-            let passwordInput = document.querySelector("#password");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        })
-    },100);
-    return Swal.fire({
-        title: "Liternauts",
-        html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
-            <input type="password" id="password" class="swal2-input" placeholder="Password">
-            <div style="display:flex; justify-content:center; align-items: center;">
-                Show password
-                <input style="margin-left:5px"type="checkbox" id="swal2-checkbox">
-            </div>`,
-        confirmButtonText: "Sing " + type,
-        denyButtonText: denyButtonText,
-        showDenyButton: true,
-        confirmButtonColor: "#e74c3c",
-        denyButtonColor: "#e67e22",
-        preConfirm: preConfirm,
-        customClass:{
-            validationMessage:'div'
-        },
-        showCloseButton: true,
-        position:'top',
-        
-    });
-}
-
-function singIn() {
-    const login = Swal.getPopup().querySelector("#login").value;
-    const password = Swal.getPopup().querySelector("#password").value;
-
-    let usuerExists = false;
-    let correctPassword = false;
-    // let userList = JSON.parse(localStorage.getItem('userList'));
-    let userList = [
-        { username: "Pepe", password: "2202" },
-        { username: "Pepito", password: "2202" },
-    ];
-    console.log(userList);
-    userList.forEach((value) => {
-        if (value.username === login) {
-            usuerExists = true;
-            if (value.password === password) {
-                correctPassword = true;
-            }
-        }
-    });
-    if (login && password) {
-        if (usuerExists) {
-            if (correctPassword) {
-                return { login: login, password: password };
-            } else {
-                Swal.showValidationMessage(`Incorrect password!`);
-                return false;
-            }
-        } else {
-            Swal.showValidationMessage(`Incorrect username!`);
-            return false;
-        }
-    } else {
-        Swal.showValidationMessage(`Please enter username and password`);
-    }
-}
-
-function singUp() {
-    const login = Swal.getPopup().querySelector("#login").value;
-    const password = Swal.getPopup().querySelector("#password").value;
-
-    let usuerExists = false;
-    let strenghtPasswordMsg = validatePassword(password);
-    // let userList = JSON.parse(localStorage.getItem('userList'));
-    let userList = [
-        { username: "Pepe", password: "2202" },
-        { username: "Pepito", password: "2202" },
-    ];
-    console.log(userList);
-    userList.forEach((value) => {
-        if (value.username === login) {
-            usuerExists = true;
-        }
-    });
-    if (login && password) {
-        if (usuerExists) {
-            Swal.showValidationMessage(`Username exists!`);
-            return false;
-        } else {
-            if (strenghtPasswordMsg === "Good") {
-                return { login: login, password: password };
-            } else {
-                Swal.showValidationMessage(strenghtPasswordMsg);
-                return false;
-            }
-        }
-    } else {
-        Swal.showValidationMessage(`Please enter username and password`);
-    }
-}
+// MENU
 
 /**
  * Cambia las flechas del sub-menu-responsive.
@@ -339,7 +154,7 @@ function resetMenuResponsive(menuResponsive, menuButton) {
  *
  * @param {String} email
  */
-function isEmailExists(email) {
+function isEmailSubscribe(email) {
     let emails = localStorage.getItem("emailsNewslastter");
     if (emails) {
         let arrayEmails = JSON.parse(emails);
@@ -356,11 +171,279 @@ function isEmailExists(email) {
 }
 
 
-function myFunction() {
-    var x = document.getElementById("#password");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
+// Login, Logout and Sing up
+
+/**
+ * Abstraccion para utilizar en ambos sing
+ * @param {String} type 
+ */
+function sing(type) {
+    let denyButtonText, preConfirm, confirmButtonText;
+    if (type === "in") {
+        denyButtonText = "Create an account";
+        preConfirm = logIn;
+        confirmButtonText='Login';
+    } else if (type === "up") {
+        denyButtonText = "Cancel";
+        preConfirm = singUp;
+        confirmButtonText='Sign up';
     }
-  }
+    togglePasswordVisibility();
+    return formAlert(confirmButtonText, denyButtonText, preConfirm);
+}
+
+/**
+ * Oculta o muestra la contraseña
+ */
+function togglePasswordVisibility() {
+    setTimeout(() => {
+        document.querySelector("#swal2-checkbox").addEventListener("click", function () {
+            let passwordInput = document.querySelector("#password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+    }, 100);
+}
+
+function logIn() {
+    const login = Swal.getPopup().querySelector("#login").value;
+    const password = Swal.getPopup().querySelector("#password").value;
+
+    let usuerExists = false;
+    let correctPassword = false;
+
+    let userList = getUserList();
+    console.table(userList);
+    userList.forEach((value) => {
+        if (value.login === login) {
+            usuerExists = true;
+            if (value.password === password) {
+                correctPassword = true;
+            }
+        }
+    });
+    if (login && password) {
+        if (usuerExists) {
+            if (correctPassword) {
+                return { login: login, password: password };
+            } else {
+                Swal.showValidationMessage(`Incorrect password!`);
+                return false;
+            }
+        } else {
+            Swal.showValidationMessage(`Incorrect username!`);
+            return false;
+        }
+    } else {
+        Swal.showValidationMessage(`Please enter username and password`);
+    }
+}
+
+function singUp() {
+    const login = Swal.getPopup().querySelector("#login").value;
+    const password = Swal.getPopup().querySelector("#password").value;
+
+    let usuerExists = false;
+    let strenghtPasswordMsg = validatePassword(password);
+    let userList = getUserList();
+    userList.forEach((value) => {
+        if (value.login === login) {
+            usuerExists = true;
+        }
+    });
+    if (login && password) {
+        if (usuerExists) {
+            Swal.showValidationMessage(`Username exists!`);
+            return false;
+        } else {
+            if (strenghtPasswordMsg === "Good") {
+                return { login: login, password: password };
+            } else {
+                Swal.showValidationMessage(strenghtPasswordMsg);
+                return false;
+            }
+        }
+    } else {
+        Swal.showValidationMessage(`Please enter username and password`);
+    }
+}
+
+function loginaAndSingUp() {
+    document.querySelector("#log-in").addEventListener("click", function () {
+        sing("in").then((result) => {
+            if (result.isConfirmed) {
+                if (result.value) {
+                    if (result.value.login && result.value.password) {
+                        welcomeAlert(result);
+                        setUserOnline(result.value);
+                        document.querySelector("#log-in").parentElement.classList.add('display-none');
+                        document.querySelector("#log-out").parentElement.classList.remove('display-none');
+                        document.querySelector("#log-in-responsive").parentElement.classList.add('display-none');
+                        document.querySelector("#log-out-responsive").parentElement.classList.remove('display-none');
+                    }
+                }
+            } else if (result.isDenied) {
+                sing("up").then((result) => {
+                    if (result.isConfirmed) {
+                        if (result.value) {
+                            addUser(result.value);
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    document.querySelector("#log-in-responsive").addEventListener("click", function () {
+        sing("in").then((result) => {
+            if (result.isConfirmed) {
+                if (result.value) {
+                    if (result.value.login && result.value.password) {
+                        welcomeAlert(result);
+                        setUserOnline(result.value);
+                        document.querySelector("#log-in").parentElement.classList.add('display-none');
+                        document.querySelector("#log-out").parentElement.classList.remove('display-none');
+                        document.querySelector("#log-in-responsive").parentElement.classList.add('display-none');
+                        document.querySelector("#log-out-responsive").parentElement.classList.remove('display-none');
+                    }
+                }
+            } else if (result.isDenied) {
+                sing("up").then((result) => {
+                    if (result.isConfirmed) {
+                        if (result.value) {
+                            addUser(result.value);
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+}
+
+function logOut() {
+    document.querySelector("#log-out").addEventListener('click', function () {
+        warningAlert().then((result) => {
+            if (result.isConfirmed) {
+                setUserOnline("");
+                document.querySelector("#log-in").parentElement.classList.remove('display-none');
+                document.querySelector("#log-out").parentElement.classList.add('display-none');
+            }
+        });
+    });
+
+    document.querySelector("#log-out-responsive").addEventListener('click', function () {
+        warningAlert().then((result) => {
+            if (result.isConfirmed) {
+                setUserOnline("");
+                document.querySelector("#log-in-responsive").parentElement.classList.remove('display-none');
+                document.querySelector("#log-out-responsive").parentElement.classList.add('display-none');
+            }
+        });
+    });
+}
+
+// ALERT
+
+function warningAlert() {
+    return Swal.fire({
+        title: 'Are you sure?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e74c3c',
+        cancelButtonColor: '#555',
+        confirmButtonText: 'Yes, logout!',
+        position: 'top'
+    });
+}
+
+function welcomeAlert(result) {
+    Swal.fire({
+        title: 'Hello ' + result.value.login,
+        text: 'Welcome back!',
+        imageUrl: './img/write.jpg',
+        imageWidth: 400,
+        imageHeight: 200,
+        showConfirmButton: false,
+        imageAlt: 'Custom image',
+        timer: 1500
+    });
+}
+
+/**
+ * 
+ * @param {String} confirmButtonText 
+ * @param {String} denyButtonText 
+ * @param {Function} preConfirm 
+ */
+function formAlert(confirmButtonText, denyButtonText, preConfirm) {
+    return Swal.fire({
+        title: "Liternauts",
+        html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
+            <input type="password" id="password" class="swal2-input" placeholder="Password">
+            <div style="display:flex; justify-content:center; align-items: center;">
+                Show password
+                <input style="margin-left:5px"type="checkbox" id="swal2-checkbox">
+            </div>`,
+        confirmButtonText: confirmButtonText,
+        denyButtonText: denyButtonText,
+        showDenyButton: true,
+        confirmButtonColor: "#e74c3c",
+        denyButtonColor: "#e67e22",
+        preConfirm: preConfirm,
+        customClass: {
+            validationMessage: "div",
+        },
+        showCloseButton: true,
+        position: "top",
+    });
+}
+
+// USER-ONLINE
+
+function userOnline() {
+    let userOnline = getUserOnline();
+    if (userOnline) {
+        document.querySelector("#log-in").parentElement.classList.add('display-none');
+        document.querySelector("#log-out").parentElement.classList.remove('display-none');
+        document.querySelector("#log-in-responsive").parentElement.classList.add('display-none');
+        document.querySelector("#log-out-responsive").parentElement.classList.remove('display-none');
+    }
+}
+
+
+// USER-LIST
+/**
+ * @returns {Array<{username:String, password: String}>}
+ */
+function getUserList(){
+    let userList = JSON.parse(localStorage.getItem('userList'));
+    if(userList){
+        return userList;
+    }else{
+        localStorage.setItem('userList',JSON.stringify([]));
+        return getUserList();
+    }
+}
+
+/**
+ * 
+ * @param {{username:String, password: String}} user 
+ */
+function addUser(user){
+    let userList = getUserList();
+    userList.push(user);
+    localStorage.setItem('userList', JSON.stringify(userList));
+}
+
+
+
+/**
+ * @param {{username:String, password: String}} user 
+ */
+function setUserOnline(user){
+    localStorage.setItem('userOnline',JSON.stringify(user));
+}
