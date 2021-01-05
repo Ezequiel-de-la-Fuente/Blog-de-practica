@@ -1,4 +1,4 @@
-# Blog de practica
+# [Blog de practica](./src/index.html)
 
 _Es basicamente un blog que cree para practicar todo lo que estuve viendo de desarollo web, la idea fue encontrar un blog e intentar imitar su estilo y funcionalidades, al menos la mayoria._
 
