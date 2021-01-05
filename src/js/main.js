@@ -283,6 +283,11 @@ function loginaAndSingUp() {
                         document.querySelector("#log-out").parentElement.classList.remove('display-none');
                         document.querySelector("#log-in-responsive").parentElement.classList.add('display-none');
                         document.querySelector("#log-out-responsive").parentElement.classList.remove('display-none');
+                        try {
+                            showCommentForm(result);
+                        } catch (error) {
+                            
+                        }
                     }
                 }
             } else if (result.isDenied) {
@@ -308,6 +313,11 @@ function loginaAndSingUp() {
                         document.querySelector("#log-out").parentElement.classList.remove('display-none');
                         document.querySelector("#log-in-responsive").parentElement.classList.add('display-none');
                         document.querySelector("#log-out-responsive").parentElement.classList.remove('display-none');
+                        try {
+                            showCommentForm(result);
+                        } catch (error) {
+                            
+                        }
                     }
                 }
             } else if (result.isDenied) {
@@ -324,6 +334,12 @@ function loginaAndSingUp() {
 
 }
 
+function showCommentForm(result) {
+    let formComment = document.querySelector('.form-comment');
+    formComment.classList.remove('display-none');
+    formComment.querySelector('.comment-username').textContent = `${result.value.login}`;
+}
+
 function logOut() {
     document.querySelector("#log-out").addEventListener('click', function () {
         warningAlert().then((result) => {
@@ -331,6 +347,8 @@ function logOut() {
                 setUserOnline("");
                 document.querySelector("#log-in").parentElement.classList.remove('display-none');
                 document.querySelector("#log-out").parentElement.classList.add('display-none');
+
+                hideCommentForm();
             }
         });
     });
@@ -341,9 +359,16 @@ function logOut() {
                 setUserOnline("");
                 document.querySelector("#log-in-responsive").parentElement.classList.remove('display-none');
                 document.querySelector("#log-out-responsive").parentElement.classList.add('display-none');
+                hideCommentForm();
             }
         });
     });
+}
+
+function hideCommentForm() {
+    let formComment = document.querySelector('.form-comment');
+    formComment.classList.add('display-none');
+    formComment.querySelector('.comment-username').textContent = ``;
 }
 
 // ALERT

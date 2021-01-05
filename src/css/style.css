@@ -676,6 +676,10 @@ header {
         width: 60%;
     }
 
+    .menu__responsive .menu-title{
+        margin: 0;
+    }
+
     .presentation-title {
         font-size: 50px;
     }
@@ -723,6 +727,16 @@ header {
 }
 
 @media screen and (max-width: 500px) {
+
+    .menu__responsive .menu-title{
+        font-size: 35px;
+        margin-top: 5px;
+    }
+
+    .menu__responsive{
+        width: 75%;
+    }
+
     .presentation__secondary {
         background-position: -70vw;
     }
@@ -749,9 +763,20 @@ header {
 }
 
 @media screen and (max-width: 350px) {
+
     .menu-title {
-        font-size: 30px;
+        font-size: 25px;
     }
+
+    .menu__responsive .menu-title{
+        font-size: 25px;
+        margin-top: 5px;
+    }
+
+    .menu-button{
+        font-size: 25px;
+    }
+
     .presentation-title {
         font-size: 30px;
     }

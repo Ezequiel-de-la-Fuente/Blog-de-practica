@@ -20,7 +20,7 @@ function getParameterByName(name) {
 function getFormatedDate() {
     let date = new Date().toLocaleDateString("lts");
     let dateString = date.split("/");
-    let month = parseInt(dateString[1]);
+    let month = parseInt(dateString[0]);
     let monthArray = [
         "January",
         "February",
@@ -35,7 +35,7 @@ function getFormatedDate() {
         "November",
         "December",
     ];
-    return `${monthArray[month - 1]} ${dateString[0]}, ${dateString[2]}`;
+    return `${monthArray[month - 1]} ${dateString[1]}, ${dateString[2]}`;
 }
 
 /**
@@ -165,6 +165,19 @@ function getUserOnline(){
     }
 }
 
+/**
+ * @returns {Array<{postId:String, username:String, body:String}>}
+ */
+function getComments(){
+    let comments = JSON.parse(localStorage.getItem('comments'));
+    if(comments){
+        return comments;
+    }else{
+        localStorage.setItem('comments',JSON.stringify([]));
+        return JSON.parse(localStorage.getItem('comments'));
+    }
+}
+
 export {
     getParameterByName,
     getRandomInt,
@@ -174,5 +187,6 @@ export {
     toggleShow,
     checkEmail,
     validatePassword,
-    getUserOnline
+    getUserOnline,
+    getComments
 };

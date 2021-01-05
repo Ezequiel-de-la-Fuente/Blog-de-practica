@@ -2,9 +2,16 @@
 /**
  * @module Article
  */
-import { getParameterByName, getFormatedDate, getRandomInt, checkImages, getUserOnline } from "./func.js";
+import { getParameterByName, getFormatedDate, getRandomInt, checkImages, getUserOnline, getComments} from "./func.js";
 import { fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy } from "./fetch.js";
 window.addEventListener("load", function () {
+    let userOnline=getUserOnline();
+    if(!userOnline){
+        setTimeout(()=>{
+            let formComment = document.querySelector('.form-comment');
+            formComment.classList.add('display-none');
+        },300);
+    }
     let postId = getParameterByName("postId");
     if (!postId) {
         postId = 1;
@@ -24,7 +31,7 @@ window.addEventListener("load", function () {
 function loadPost(postId) {
     fetchPostBy(postId).then((post) => {
         let articleDiv = document.querySelector(".article");
-        fetchUserBy(postId).then((user) => {
+        fetchUserBy(post.userId).then((user) => {
             articleDiv.innerHTML = `<h1 class="article-title">${post.title}</h1>
                     <h3 class="article-info">By ${user.username} posted ${getFormatedDate()}</h3>
                     <p class="article-p">Let’s imagine a man called Peter leaving the gym and running to his car with his duffel
@@ -93,32 +100,23 @@ function loadPost(postId) {
                     <div class="comments">
                         <h2>Comments</h2>
                     </div>`;
-            fetchCommentsBy(postId)
-            .then(comments=>{
-                comments.forEach(comment=>{
-                    let commentObj=comment;
-                    commentObj.username=commentObj.email.split('@')[0];
+            fetchCommentsBy(postId).then((comments) => {
+                comments.forEach((comment) => {
+                    let commentObj = comment;
+                    commentObj.username = commentObj.email.split("@")[0];
                     // console.table(commentObj);
-                    document.querySelector('.article .comments').innerHTML+=`
-                    <div class="comment">
-                        <div class="comment-picture">
-                            <div class="comment-picture-icon">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        </div>
-                        <div class="comment-header">
-                            <h4 class="comment-username">${commentObj.username}</h4>
-                        </div>
-                        <p class="comment-p">
-                            ${commentObj.body}
-                        </p>
-                        <span class="comment-date">Written on ${getFormatedDate()}.</span>
-                        <button type="button">Answer</button>
-                        
-                    </div>`;
+                    addComment(commentObj.username, commentObj.body);
                 });
-                document.querySelector('.article .comments').innerHTML+=
-                `<form class="form-comment">
+               try {
+                    getComments().forEach(comment=>{
+                        if(comment.postId===postId){
+                            addComment(comment.username, comment.body);
+                        }
+                    })
+               } catch (error) {
+                   
+               }
+                document.querySelector(".article .comments").innerHTML += `<form class="form-comment">
                     <div class="comment-picture">
                         <div class="comment-picture-icon">
                             <i class="fas fa-user"></i>
@@ -127,13 +125,64 @@ function loadPost(postId) {
                     <div class="comment-header">
                         <h4 class="comment-username">${getUserOnline().login}</h4>
                     </div>
-                    <textarea placeholder="Write a comment" rows="8"></textarea>
-                    <button type="submit">Publish</button>
-                </form>`
+                    <textarea placeholder="Write a comment..." rows="8"></textarea>
+                    <button type="submit">Submit</button>
+                </form>`;
             });
+            setTimeout(() => {
+                document.querySelector(".form-comment button").addEventListener("click", function (e) {
+                    let commentBody = this.parentElement.querySelector("textarea").value;
+                    if (commentBody) {
+                        let user = getUserOnline();
+                        let comments = document.querySelectorAll(".comment");
+                        comments[comments.length - 1].outerHTML += `<div class="comment">
+                        <div class="comment-picture">
+                            <div class="comment-picture-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="comment-header">
+                            <h4 class="comment-username">${user.login}</h4>
+                        </div>
+                        <p class="comment-p">
+                            ${commentBody}
+                        </p>
+                        <span class="comment-date">Written on ${getFormatedDate()}.</span>
+                    </div>`;
+                        this.parentElement.querySelector("textarea").value = "";
+                        let commentsArray = getComments();
+                        commentsArray.push({postId:postId, username:user.login, body:commentBody});
+                        localStorage.setItem('comments', JSON.stringify(commentsArray));
+                    } else {
+                        Swal.fire({
+                            title: "Your comment is empty!",
+                            icon: "warning",
+                        });
+                    }
+                    e.preventDefault();
+                });
+            }, 100);
             checkImages();
         });
     });
+}
+
+function addComment(username, body) {
+    document.querySelector(".article .comments").innerHTML += `
+        <div class="comment">
+            <div class="comment-picture">
+                <div class="comment-picture-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            <div class="comment-header">
+                <h4 class="comment-username">${username}</h4>
+            </div>
+            <p class="comment-p">
+                ${body}
+            </p>
+            <span class="comment-date">Written on ${getFormatedDate()}.</span>
+        </div>`;
 }
 
 /**
@@ -154,3 +203,4 @@ function generateRandomIds(randomIds, cant, min = 1, max = 100) {
     randomIds.shift();
     return randomIds;
 }
+
