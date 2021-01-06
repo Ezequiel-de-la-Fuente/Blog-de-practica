@@ -1,36 +1,33 @@
 /**
- * 
+ *
  * @module Fetch
  */
 
 /**
- * 
- * @param {number |String} id 
+ *
+ * @param {number |String} id
  */
 function fetchPostBy(id) {
-    return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        .then(post => post.json());
+    return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then((post) => post.json());
 }
 
 /**
- * 
- * @param {number | String} id 
+ *
+ * @param {number | String} id
  */
-function fetchUserBy(id){
-    return fetch("https://jsonplaceholder.typicode.com/users/" + id)
-                .then(user => user.json())
+function fetchUserBy(id) {
+    return fetch("https://jsonplaceholder.typicode.com/users/" + id).then((user) => user.json());
 }
 
 /**
- * 
- * @param {Array<number>} randomIds 
- * @param {HTMLCollection} articles 
+ *
+ * @param {Array<number>} randomIds
+ * @param {HTMLCollection} articles
  */
 function loadMainPosts(randomIds, articles) {
     for (let i = 0; i < 4; i++) {
-        fetchPostBy(randomIds[i])
-            .then(post => {
-                let innerHTML = `<article class="main-article">
+        fetchPostBy(randomIds[i]).then((post) => {
+            let innerHTML = `<article class="main-article">
                 <div class="main-article-img-container">
                     <img src="https://picsum.photos/id/${post.id}/300/200" alt="img">
                 </div>
@@ -40,16 +37,13 @@ function loadMainPosts(randomIds, articles) {
                 <a href="./article.html?postId=${post.id}" class="btn btn-orange">Reed more...</a>
                 </article>`;
 
-                articles.innerHTML += innerHTML;
-            }
-            );
+            articles.innerHTML += innerHTML;
+        });
     }
 }
 
-function fetchCommentsBy(postId){
-    return fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
-    .then(comments=>comments.json());
-    
+function fetchCommentsBy(postId) {
+    return fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`).then((comments) => comments.json());
 }
 
-export {fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy}
+export { fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy };

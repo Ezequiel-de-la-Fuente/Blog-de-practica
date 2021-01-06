@@ -11,9 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
     "docdash": "^1.2.0",
-    "jsdoc": "^3.6.6",
-    "sweetalert2": "^10.12.7"
+    "jsdoc": "^3.6.6"
   }
 }

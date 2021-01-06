@@ -153,28 +153,28 @@ function validatePassword(
 }
 
 /**
- * @returns {{username:String, password: String}} user 
+ * @returns {{username:String, password: String}} user
  */
-function getUserOnline(){
-    let userOnline = JSON.parse(localStorage.getItem('userOnline'));
-    if(userOnline){
+function getUserOnline() {
+    let userOnline = JSON.parse(localStorage.getItem("userOnline"));
+    if (userOnline) {
         return userOnline;
-    }else{
-        localStorage.setItem('userOnline',JSON.stringify(""));
-        return JSON.parse(localStorage.getItem('userOnline'));
+    } else {
+        localStorage.setItem("userOnline", JSON.stringify(""));
+        return JSON.parse(localStorage.getItem("userOnline"));
     }
 }
 
 /**
  * @returns {Array<{postId:String, username:String, body:String}>}
  */
-function getComments(){
-    let comments = JSON.parse(localStorage.getItem('comments'));
-    if(comments){
+function getComments() {
+    let comments = JSON.parse(localStorage.getItem("comments"));
+    if (comments) {
         return comments;
-    }else{
-        localStorage.setItem('comments',JSON.stringify([]));
-        return JSON.parse(localStorage.getItem('comments'));
+    } else {
+        localStorage.setItem("comments", JSON.stringify([]));
+        return JSON.parse(localStorage.getItem("comments"));
     }
 }
 
@@ -188,5 +188,5 @@ export {
     checkEmail,
     validatePassword,
     getUserOnline,
-    getComments
+    getComments,
 };
