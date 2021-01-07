@@ -35,7 +35,7 @@ function welcomeAlert(result) {
  */
 function formAlert(confirmButtonText, denyButtonText, preConfirm) {
     return Swal.fire({
-        title: "Liternauts - " + confirmButtonText,
+        title: "Lorem - " + confirmButtonText,
         html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
             <input type="password" id="password" class="swal2-input" placeholder="Password">
             <div style="display:flex; justify-content:center; align-items: center;">
@@ -62,7 +62,7 @@ function formAlert(confirmButtonText, denyButtonText, preConfirm) {
  */
 function supportFormAlert(preConfirm) {
     return Swal.fire({
-        title: "Liternauts - Support",
+        title: "Lorem - Support",
         html: `<input type="text" id="name-support" class="swal2-input" placeholder="Name">
             <input type="email" id="email-support" class="swal2-input" placeholder="Email">
             <textarea id="message-support" class="swal2-textarea" placeholder="Message"></textarea>`,
@@ -86,7 +86,7 @@ function supportFormAlert(preConfirm) {
  */
 function aboutUsAlert() {
     return Swal.fire({
-        title: "Liternauts - About us",
+        title: "Lorem - About us",
         html: `<h3>Nice to Meet You!</h3>
         <h4>Lorem ipsum</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit cum, magnis etiam tempor lacus facilisis auctor a suscipit curabitur, euismod penatibus per nostra mi aenean malesuada. Leo risus interdum tellus ad placerat et odio, lacinia hac habitant gravida facilisi. Nisi ultrices velit potenti nisl odio aliquet tellus magnis augue ornare nostra, libero vel sagittis nulla facilisi neque laoreet nec vivamus nibh.</p>
