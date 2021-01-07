@@ -219,10 +219,11 @@ header {
     background: #2be95b;
 }
 
-.btn-move-down svg {
+.btn-move-down i {
     position: relative;
     animation: 500ms infinite alternate move;
-    animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+    top:2px;
 }
 
 @keyframes move {
@@ -231,7 +232,7 @@ header {
     }
 
     to {
-        top: 2px;
+        top: 4px;
     }
 }
 
@@ -274,6 +275,31 @@ header {
     left: -500px;
     transition: all 400ms ease;
 }
+
+.menu__responsive .menu-title{
+    text-decoration: none;
+    border: none;
+    margin: 10px 0;
+    width: 100%;
+    transition: background ease 300ms;
+    cursor: pointer;
+    margin-top: 0;
+    padding: 5px 0;
+}
+
+.menu__responsive .menu-title a{
+    width: 95%;
+    display: block;
+    padding: 0;
+    padding-left: 5%;
+}
+
+
+.menu__responsive .menu-title:hover {
+    background: #ccc;
+    border: none;
+}
+
 
 .menu__responsive-show {
     left: 0;
@@ -763,14 +789,22 @@ header {
 }
 
 @media screen and (max-width: 500px) {
-
+    .main-subtitle{
+        margin-left: 3px;
+        margin-right: 3px;
+    }
     .menu__responsive .menu-title{
         font-size: 35px;
-        margin-top: 5px;
+        margin-top: 0;
     }
 
     .menu__responsive{
         width: 75%;
+    }
+
+    .presentation-subtitle{
+        margin-left: 5vw;
+        margin-right: 5vw;
     }
 
     .presentation__secondary {
@@ -824,6 +858,11 @@ header {
 
     .menu-title {
         font-size: 25px;
+    }
+
+    .main-subtitle{
+        margin-left: 1px;
+        margin-right: 1px;
     }
 
     .menu__responsive .menu-title{

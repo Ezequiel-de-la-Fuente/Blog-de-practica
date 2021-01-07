@@ -125,6 +125,22 @@ header{
 }
 
 
+
+@media screen and (min-width: 1700px) {
+    .item-main h2{
+        font-size: 35px;
+    }
+
+    .item-main span, .item-main p, .item-main .available{
+        font-size: 25px;
+    }
+
+
+    .item-main .btn{
+        font-size: 25px;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     #presentation-three{
         display: flex;
