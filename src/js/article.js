@@ -4,13 +4,12 @@
  */
 import { getParameterByName, getFormatedDate, getRandomInt, checkImages, getUserOnline, getComments } from "./func.js";
 import { fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy } from "./fetch.js";
-
 window.addEventListener("load", function () {
     let postId = getParameterByName("postId");
     if (!postId) {
-        postId = 1;
+        window.location='./404.html';
+        return;
     }
-
     let articles = document.querySelector("#main-articles");
     let randomIds = generateRandomIds([parseInt(postId)], 4);
 
@@ -205,7 +204,11 @@ function createArticle(title, body, id, username) {
  * @param {String} username
  */
 function createFormComment(username = "") {
-    return `<div class="form-comment">
+    let class_="";
+    if(username===""){
+        class_='display-none';
+    }
+    return `<div class="form-comment ${class_}">
     <div class="comment-picture">
         <div class="comment-picture-icon">
             <i class="fas fa-user"></i>

@@ -178,6 +178,24 @@ function getComments() {
     }
 }
 
+/**
+ * Inicia la animacion de desplazamiento hacia abajo.
+ */
+function startMoveDownAnimation(query) {
+    let presentationOne = document.querySelector(query);
+    let listOfIntervalIds = [];
+    let id = setInterval(() => {
+        if (window.scrollY > 50 + presentationOne.clientHeight) {
+            listOfIntervalIds.forEach((value) => clearInterval(value));
+        } else {
+            window.scroll(window.scrollX, window.scrollY + 3);
+            if (!listOfIntervalIds.includes(id)) {
+                listOfIntervalIds.push(id);
+            }
+        }
+    }, 1);
+}
+
 export {
     getParameterByName,
     getRandomInt,
@@ -189,4 +207,5 @@ export {
     validatePassword,
     getUserOnline,
     getComments,
+    startMoveDownAnimation
 };

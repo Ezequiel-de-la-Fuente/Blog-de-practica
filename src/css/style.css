@@ -5,8 +5,8 @@
 :root {
     --libreBaskerville: "Libre Baskerville", serif;
     --sourceSansPro: "Source Sans Pro", sans-serif;
-    --sunFlower: #f1c40f;
-    --carrot: #e67e22;
+    --sunFlower: #faaf40;
+    --carrot: #E78D06;
     --alizarin: #e74c3c;
     --black: #2d3436;
     --gray: #eaeaea;
@@ -16,6 +16,9 @@
     margin: 0;
     padding: 0;
     list-style: none;
+}
+a{
+    cursor: pointer;
 }
 
 /* HEADER */
@@ -165,9 +168,9 @@ header {
     font-family: var(--sourceSansPro);
     text-transform: uppercase;
     text-decoration: none;
-    padding: 10px 40px;
-    font-size: 20px;
-    transition: background ease 300ms;
+    padding: 5px 35px;
+    font-size: 18px;
+    transition: all ease 300ms;
     margin: 0 50px;
     margin-right: 35px;
     border-radius: .25em;
@@ -540,24 +543,29 @@ header {
 
 #footer {
     background: #2e2e2e;
-    height: 60px;
+    height: min-content;
     display: flex;
     align-content: center;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 70px;
 }
 
 #footer span {
     color: #6c6c6c;
     display: block;
     margin: 0 auto;
+    margin: 5px 0;
 }
 
-#footer span a {
+#footer a {
     color: var(--alizarin);
     text-decoration: none;
+    margin: 5px 0;
 }
 
-#footer span a:hover {
+#footer a:hover {
     text-decoration: underline;
 }
 
@@ -614,6 +622,34 @@ header {
 .swal2-container{
     z-index: 1000000000000;
 }
+
+#message-support{
+    resize: vertical;
+}
+
+.swal2-container h3{
+    font-size: 22px;
+    font-family: var(--libreBaskerville);
+}
+
+.swal2-container h4{
+    font-family: var(--libreBaskerville);
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.swal2-container p{
+    margin-top: 10px;
+    font-family: var(--sourceSansPro);
+}
+
+.swal2-container p,
+.swal2-container h3,
+.swal2-container h4{
+    text-align: left;
+}
+
+
 @media screen and (min-width: 1500px) {
     .menu-item {
         width: 150px;
@@ -760,6 +796,28 @@ header {
     #footer a {
         display: block;
     }
+
+    .swal2-container{
+        padding: 0;
+    }
+
+    .swal2-container h3{
+        font-size: 18px;
+        font-family: var(--libreBaskerville);
+    }
+    
+    .swal2-container h4{
+        font-size: 14px;
+        font-family: var(--libreBaskerville);
+        color: #ccc;
+        margin-top: 5px;
+    }
+    
+    .swal2-container p{
+        font-size: 14px;
+        margin-top: 10px;
+        font-family: var(--sourceSansPro);
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -801,5 +859,9 @@ header {
     .presentation__secondary {
         background-position: -100vw;
         height: 500px;
+    }
+
+    .swal2-content{
+        padding: 0;
     }
 }

@@ -1,4 +1,5 @@
 import { toggleShow, checkEmail, validatePassword, getUserOnline } from "./func.js";
+import { formAlert, warningAlert, welcomeAlert, supportFormAlert, aboutUsAlert } from "./alert.js";
 ("use strict");
 
 /**
@@ -81,6 +82,59 @@ window.addEventListener("load", function () {
         }
         inputEmail.value = "";
         e.preventDefault();
+    });
+
+    // SUPPORT
+
+    document.querySelector("#support-btn").addEventListener("click", function () {
+        supportFormAlert(() => {
+            const name = Swal.getPopup().querySelector("#name-support").value;
+            const email = Swal.getPopup().querySelector("#email-support").value;
+            const message = Swal.getPopup().querySelector("#message-support").value;
+            let isEmail = checkEmail(email);
+
+            if (name && email && message && isEmail) {
+                return { name: name, email: email, message: message };
+            } else {
+                let errorMessage = "";
+                if(!name){
+                    errorMessage += "Please fill the name field.<br>";
+                }
+                if(!email){
+                    errorMessage += "Please fill the email field.<br>";
+                }else{
+                    if(!isEmail){
+                        errorMessage += "Please check your email.<br>";
+                    }
+                }
+                if(!message){
+                    errorMessage += "Please fill the message field.";
+                }
+                Swal.showValidationMessage(errorMessage);
+            }
+            
+        }).then((result) => {
+            if(result.isConfirmed){
+                Swal.fire({
+                    icon: "success",
+                    title: `Thank you ${result.value.name}!`,
+                    text: "In a while we will write to you!",
+                    showConfirmButton: false,
+                    position:'top',
+                    timerProgressBar:true,
+                    showCloseButton: true,
+                    timer:1500
+                });
+            }
+        });
+    });
+
+    // ABOUT US
+
+    document.querySelector('#aboutUs-btn').addEventListener('click', function(){
+        aboutUsAlert(()=>{
+            
+        })
     });
 
     document.addEventListener("click", function (e) {
@@ -197,7 +251,6 @@ function sing(type) {
     return formAlert(confirmButtonText, denyButtonText, preConfirm);
 }
 
-
 /**
  * Evento de login y SingUp
  */
@@ -302,10 +355,10 @@ function singUp() {
     }
 }
 /**
- * 
+ *
  */
 function logOut() {
-    document.querySelectorAll("#log-out, #log-out-responsive").forEach(element=>{
+    document.querySelectorAll("#log-out, #log-out-responsive").forEach((element) => {
         element.addEventListener("click", function () {
             warningAlert().then((result) => {
                 if (result.isConfirmed) {
@@ -316,7 +369,7 @@ function logOut() {
                 }
             });
         });
-    })
+    });
 }
 
 function showLogin() {
@@ -348,62 +401,6 @@ function togglePasswordVisibility() {
     } else {
         passwordInput.type = "password";
     }
-}
-
-// ALERT
-
-function warningAlert() {
-    return Swal.fire({
-        title: "Are you sure?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#e74c3c",
-        cancelButtonColor: "#555",
-        confirmButtonText: "Yes, logout!",
-        position: "top",
-    });
-}
-
-function welcomeAlert(result) {
-    Swal.fire({
-        title: "Hello " + result.value.login,
-        text: "Welcome back!",
-        imageUrl: "./img/write.jpg",
-        imageWidth: 400,
-        imageHeight: 200,
-        showConfirmButton: false,
-        imageAlt: "Custom image",
-        timer: 1500,
-    });
-}
-
-/**
- *
- * @param {String} confirmButtonText
- * @param {String} denyButtonText
- * @param {Function} preConfirm
- */
-function formAlert(confirmButtonText, denyButtonText, preConfirm) {
-    return Swal.fire({
-        title: "Liternauts",
-        html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
-            <input type="password" id="password" class="swal2-input" placeholder="Password">
-            <div style="display:flex; justify-content:center; align-items: center;">
-                Show password
-                <input style="margin-left:5px"type="checkbox" id="swal2-checkbox">
-            </div>`,
-        confirmButtonText: confirmButtonText,
-        denyButtonText: denyButtonText,
-        showDenyButton: true,
-        confirmButtonColor: "#e74c3c",
-        denyButtonColor: "#e67e22",
-        preConfirm: preConfirm,
-        customClass: {
-            validationMessage: "div",
-        },
-        showCloseButton: true,
-        position: "top",
-    });
 }
 
 // USER-ONLINE
