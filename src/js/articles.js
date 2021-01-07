@@ -1,13 +1,14 @@
 "use strict";
-
+import { getParameterByName, checkImages } from "./func.js";
+import { fetchPostBy } from "./fetch.js";
 /**
  * @module Articles
  */
-import { getParameterByName, checkImages } from "./func.js";
-import { fetchPostBy } from "./fetch.js";
+
 window.addEventListener("load", function () {
     loadPage();
 });
+
 /**
  * Carga la pagina, junto a la paginacion.
  */
@@ -81,7 +82,7 @@ function getPostBy(firstIndex = 1, lastIndex = 100) {
     for (let i = firstIndex; i <= lastIndex; i++) {
         if (i <= 100) {
             fetchPostBy(i).then(function (post) {
-                articles.innerHTML += createItemThumbnai(post);
+                articles.innerHTML += createItemThumbnail(post);
                 checkImages();
             });
         } else {
@@ -95,7 +96,7 @@ function getPostBy(firstIndex = 1, lastIndex = 100) {
  *
  * @param {{id:string, title:string}} post
  */
-function createItemThumbnai(post) {
+function createItemThumbnail(post) {
     return `<div class="item-thumbnail" id="postId-${post.id}">
     <img src="https://picsum.photos/id/${post.id}/300/200">
     <div class="item-thumbnail-hover"></div>

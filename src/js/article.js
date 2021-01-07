@@ -1,13 +1,13 @@
 "use strict";
+import { getParameterByName, getFormatedDate, getRandomInt, checkImages, getUserOnline, getComments } from "./func.js";
+import { fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy } from "./fetch.js";
 /**
  * @module Article
  */
-import { getParameterByName, getFormatedDate, getRandomInt, checkImages, getUserOnline, getComments } from "./func.js";
-import { fetchPostBy, fetchUserBy, loadMainPosts, fetchCommentsBy } from "./fetch.js";
 window.addEventListener("load", function () {
     let postId = getParameterByName("postId");
     if (!postId) {
-        window.location='./404.html';
+        window.location = "./404.html";
         return;
     }
     let articles = document.querySelector("#main-articles");
@@ -201,12 +201,12 @@ function createArticle(title, body, id, username) {
 
 /**
  *
- * @param {String} username
+ * @param {String=} username Si este no es pasado, el formulario estara oculto.
  */
 function createFormComment(username = "") {
-    let class_="";
-    if(username===""){
-        class_='display-none';
+    let class_ = "";
+    if (username === "") {
+        class_ = "display-none";
     }
     return `<div class="form-comment ${class_}">
     <div class="comment-picture">

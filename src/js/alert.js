@@ -1,7 +1,11 @@
 /**
  * @module Alerts
+ * @description En este modulo se encuentran las alertas personalizadas.
  */
 
+/**
+ *
+ */
 function warningAlert() {
     return Swal.fire({
         title: "Are you sure?",
@@ -13,9 +17,11 @@ function warningAlert() {
         position: "top",
     });
 }
-
+/**
+ *
+ */
 function welcomeAlert(result) {
-    Swal.fire({
+    return Swal.fire({
         title: "Hello " + result.value.login,
         text: "Welcome back!",
         imageUrl: "./img/write.jpg",
@@ -23,7 +29,7 @@ function welcomeAlert(result) {
         imageHeight: 200,
         showConfirmButton: false,
         imageAlt: "Custom image",
-        timer: 1500
+        timer: 1500,
     });
 }
 
@@ -31,7 +37,7 @@ function welcomeAlert(result) {
  *
  * @param {String} confirmButtonText
  * @param {String} denyButtonText
- * @param {Function} preConfirm
+ * @param {Function} preConfirm Es una funcion que comprueba el estado de los datos y de la opcion que se eligio.
  */
 function formAlert(confirmButtonText, denyButtonText, preConfirm) {
     return Swal.fire({
@@ -58,7 +64,7 @@ function formAlert(confirmButtonText, denyButtonText, preConfirm) {
 
 /**
  *
- * @param {Function} preConfirm
+ * @param {Function} preConfirm Es una funcion que comprueba el estado de los datos y de la opcion que se eligio.
  */
 function supportFormAlert(preConfirm) {
     return Swal.fire({
@@ -82,7 +88,7 @@ function supportFormAlert(preConfirm) {
 
 /**
  *
- * @param {Function} preConfirm
+ * @param {Function} preConfirm Es una funcion que comprueba el estado de los datos y de la opcion que se eligio.
  */
 function aboutUsAlert() {
     return Swal.fire({

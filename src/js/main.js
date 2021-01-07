@@ -371,21 +371,31 @@ function logOut() {
         });
     });
 }
-
+/**
+ * 
+ */
 function showLogin() {
     document.querySelector("#log-in").parentElement.classList.remove("display-none");
     document.querySelector("#log-in-responsive").parentElement.classList.remove("display-none");
 }
+
+/**
+ * 
+ */
 function hideLogIn() {
     document.querySelector("#log-in").parentElement.classList.add("display-none");
     document.querySelector("#log-in-responsive").parentElement.classList.add("display-none");
 }
-
+/**
+ * 
+ */
 function showLogOut() {
     document.querySelector("#log-out").parentElement.classList.remove("display-none");
     document.querySelector("#log-out-responsive").parentElement.classList.remove("display-none");
 }
-
+/**
+ * 
+ */
 function hideLogOut() {
     document.querySelector("#log-out").parentElement.classList.add("display-none");
     document.querySelector("#log-out-responsive").parentElement.classList.add("display-none");

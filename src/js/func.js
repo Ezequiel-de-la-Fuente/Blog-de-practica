@@ -4,7 +4,7 @@
  */
 
 /**
- *
+ * Retorna el parametro de la url que se le pida.
  * @param {String} name
  */
 function getParameterByName(name) {
@@ -48,7 +48,7 @@ function getRandomInt(min, max) {
 }
 
 /**
- * Revisa si las imagenes fueron cargadas correctamente
+ * Revisa si las imagenes fueron cargadas correctamente.
  */
 function checkImages() {
     document.querySelectorAll("img").forEach(function (value) {
@@ -94,7 +94,7 @@ function checkEmail(email) {
 }
 
 /**
- * Valida la contraseña y devuelve su estado
+ * Valida la contraseña y devuelve su estado.
  * @param {String} password
  */
 function validatePassword(
@@ -207,5 +207,5 @@ export {
     validatePassword,
     getUserOnline,
     getComments,
-    startMoveDownAnimation
+    startMoveDownAnimation,
 };
