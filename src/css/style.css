@@ -704,6 +704,9 @@ header {
     .menu-item a{
         margin-right: 10px;
     }
+    .sub-menu-div{
+        margin-left: 25px;
+    }
 }
 
 @media screen and (max-width: 900px) {
