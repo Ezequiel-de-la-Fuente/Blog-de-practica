@@ -1,4 +1,4 @@
-# [Blog de practica](https://ezequiel-de-la-fuente.github.io/src/index.html)
+# [Blog de practica](https://ezequiel-de-la-fuente.github.io/Blog-de-practica/src/index)
 
 _Es basicamente un blog que cree para practicar todo lo que estuve viendo de desarollo web, la idea fue encontrar un blog e intentar imitar su estilo y funcionalidades, al menos la mayoria._
 
